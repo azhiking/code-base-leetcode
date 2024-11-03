@@ -89,16 +89,13 @@ public class Solution638 {
     }
 
     public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
-        // 计算出 不选大礼包 所有物品的总价
-        int totalNoSpecial = getTotalNoSpecial(price, needs);
-        System.out.println("totalNoSpecial = " + totalNoSpecial);
         // 过滤掉不符合条件的大礼包
         List<List<Integer>> filteredSpecial = filterSpecial(price, special, needs);
         // 递归购买大礼包，买不了就单独购买
         Map<List<Integer>, Integer> map = new HashMap<>();
         int totalSpecial = getTotalForShoppingOffers(price, filteredSpecial, needs, map);
         System.out.println("totalSpecial = " + totalSpecial);
-        return Math.min(totalNoSpecial, totalSpecial);
+        return totalSpecial;
     }
 
     public int getTotalNoSpecial(List<Integer> price, List<Integer> needs) {
